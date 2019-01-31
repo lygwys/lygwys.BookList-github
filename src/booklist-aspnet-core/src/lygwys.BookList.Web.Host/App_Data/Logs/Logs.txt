@@ -22650,3 +22650,121 @@ INFO  2019-01-31 16:16:30,913 [160  ] ore.Mvc.Internal.ControllerActionInvoker -
 INFO  2019-01-31 16:16:30,918 [160  ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
 INFO  2019-01-31 16:16:30,919 [160  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application) in 13.4919ms
 INFO  2019-01-31 16:16:30,919 [160  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 22.1889ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:18:51,601 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-01-31 16:18:51,602 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,602 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.3531ms 204 
+INFO  2019-01-31 16:18:51,629 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll application/json 
+INFO  2019-01-31 16:18:51,629 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,630 [152  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpLocalizationHeaderRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpLocalizationHeaderRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:18:51,630 [152  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:18:51,639 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-01-31 16:18:51,639 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,641 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-01-31 16:18:51,660 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 19.2607ms.
+INFO  2019-01-31 16:18:51,672 [155  ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:18:51,673 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 33.8382ms
+INFO  2019-01-31 16:18:51,673 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 44.4389ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:18:51,756 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2019-01-31 16:18:51,756 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,756 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2861ms 204 
+INFO  2019-01-31 16:18:51,776 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2019-01-31 16:18:51,776 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,777 [155  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:18:51,778 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:18:51,784 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "GetCurrentLoginInformations", controller = "Session"}. Executing action lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application)
+INFO  2019-01-31 16:18:51,784 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:51,788 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application) - Validation state: Valid
+INFO  2019-01-31 16:18:51,791 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3.1322ms.
+INFO  2019-01-31 16:18:51,792 [155  ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:18:51,793 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application) in 8.4766ms
+INFO  2019-01-31 16:18:51,793 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 16.5825ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:18:52,327 [153  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/api/services/app/Book/GetPaged?FilterText=&MaxResultCount=10&SkipCount=0  
+INFO  2019-01-31 16:18:52,327 [153  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:52,328 [153  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.3187ms 204 
+INFO  2019-01-31 16:18:52,591 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Book/GetPaged?FilterText=&MaxResultCount=10&SkipCount=0  
+INFO  2019-01-31 16:18:52,592 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:52,592 [155  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:18:52,592 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:52,593 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:52,593 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:18:52,593 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:18:52,593 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:18:52,593 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:18:52,596 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "GetPaged", controller = "Book"}. Executing action lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application)
+INFO  2019-01-31 16:18:52,596 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:18:52,602 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application) with arguments (lygwys.BookList.BookListManagement.Books.Dtos.GetBooksInput) - Validation state: Valid
+INFO  2019-01-31 16:18:52,605 [164  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.5846ms.
+INFO  2019-01-31 16:18:52,620 [152  ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:18:52,620 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application) in 23.8782ms
+INFO  2019-01-31 16:18:52,620 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 28.8597ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:19:09,663 [153  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-01-31 16:19:09,663 [153  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,664 [153  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2934ms 204 
+INFO  2019-01-31 16:19:09,693 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll application/json 
+INFO  2019-01-31 16:19:09,693 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,694 [152  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpLocalizationHeaderRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpLocalizationHeaderRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:19:09,694 [152  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:19:09,698 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-01-31 16:19:09,698 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,699 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-01-31 16:19:09,712 [152  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 12.1715ms.
+INFO  2019-01-31 16:19:09,716 [155  ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:19:09,716 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 18.0092ms
+INFO  2019-01-31 16:19:09,716 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.7526ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:19:09,734 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2019-01-31 16:19:09,734 [152  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,734 [152  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2602ms 204 
+INFO  2019-01-31 16:19:09,742 [153  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2019-01-31 16:19:09,742 [153  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,743 [153  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:19:09,743 [153  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:19:09,747 [153  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "GetCurrentLoginInformations", controller = "Session"}. Executing action lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application)
+INFO  2019-01-31 16:19:09,747 [153  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:09,750 [153  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application) - Validation state: Valid
+INFO  2019-01-31 16:19:09,753 [164  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.8098ms.
+INFO  2019-01-31 16:19:09,754 [164  ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:19:09,754 [164  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action lygwys.BookList.Sessions.SessionAppService.GetCurrentLoginInformations (lygwys.BookList.Application) in 7.184ms
+INFO  2019-01-31 16:19:09,754 [164  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 12.3007ms 200 application/json; charset=utf-8
+INFO  2019-01-31 16:19:10,283 [164  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/api/services/app/Book/GetPaged?FilterText=&MaxResultCount=10&SkipCount=0  
+INFO  2019-01-31 16:19:10,284 [164  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:10,284 [164  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.6592ms 204 
+INFO  2019-01-31 16:19:10,532 [155  ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Book/GetPaged?FilterText=&MaxResultCount=10&SkipCount=0  
+INFO  2019-01-31 16:19:10,542 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:10,543 [155  ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+WARN  2019-01-31 16:19:10,543 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:10,543 [155  ] calization.RequestLocalizationMiddleware - AbpUserRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:10,544 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported cultures 'null'.
+WARN  2019-01-31 16:19:10,544 [155  ] calization.RequestLocalizationMiddleware - AbpDefaultRequestCultureProvider returned the following unsupported UI Cultures 'null'.
+WARN  2019-01-31 16:19:10,544 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported cultures 'zh-CN, zh'.
+WARN  2019-01-31 16:19:10,544 [155  ] calization.RequestLocalizationMiddleware - AcceptLanguageHeaderRequestCultureProvider returned the following unsupported UI Cultures 'zh-CN, zh'.
+INFO  2019-01-31 16:19:10,550 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "GetPaged", controller = "Book"}. Executing action lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application)
+INFO  2019-01-31 16:19:10,550 [155  ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2019-01-31 16:19:10,554 [155  ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application) with arguments (lygwys.BookList.BookListManagement.Books.Dtos.GetBooksInput) - Validation state: Valid
+INFO  2019-01-31 16:19:10,576 [153  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 22.1774ms.
+INFO  2019-01-31 16:19:10,609 [156  ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-01-31 16:19:10,610 [156  ] ore.Mvc.Internal.ControllerActionInvoker - Executed action lygwys.BookList.BookListManagement.Books.BookAppService.GetPaged (lygwys.BookList.Application) in 60.0337ms
+INFO  2019-01-31 16:19:10,610 [156  ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 78.2451ms 200 application/json; charset=utf-8
