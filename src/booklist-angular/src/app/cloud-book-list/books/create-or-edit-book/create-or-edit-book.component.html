@@ -1,0 +1,65 @@
+<form nz-form #validateForm="ngForm" (ngSubmit)="submitForm()" nzLayout="horizontal" autocomplete="off">
+  <!-- 模态框头部 -->
+  <div class="modal-header">
+    <div class="modal-title">
+      <i class="anticon anticon-medicine-box mr-sm"></i>
+      <span *ngIf="entity.id">编辑</span>
+      <span *ngIf="!entity.id">添加</span>
+    </div>
+  </div>
+
+  <!-- 模态框详情 -->
+  <fieldset>
+    <nz-form-item nz-row>
+      <nz-form-label nzFor="imgStrUrl" nzXs="24" nzSm="6">封面图片Url</nz-form-label>
+      <nz-form-control nzSm="6" nzXs="24" nz-col nzHasFeedback>
+        <input nz-input #imgStrUrl="ngModel" [(ngModel)]="entity.imgStrUrl" id="imgStrUrl" name="imgStrUrl" placeholder="封面图片Url">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+      <nz-form-label nzFor="name" nzXs="24" nzRequired nzSm="6">书名</nz-form-label>
+      <nz-form-control nzSm="6" nzXs="24" nz-col nzHasFeedback>
+        <input nz-input #name="ngModel" required [(ngModel)]="entity.name" id="name" name="name" placeholder="请输入书名">
+        <!-- 校验内容 -->
+        <nz-form-explain *ngIf="(name.control.dirty || name.control.touched) && name.control.errors">
+          <ng-container *ngIf="name.control.hasError('required')">文本框不能为空</ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+      <nz-form-label nzFor="author" nzXs="24" nzRequired nzSm="6">作者</nz-form-label>
+      <nz-form-control nzSm="6" nzXs="24" nz-col nzHasFeedback>
+        <input nz-input #author="ngModel" [(ngModel)]="entity.author" id="author" name="author" placeholder="请输入作者信息"
+          required>
+        <!-- 校验内容 -->
+        <nz-form-explain *ngIf="(author.control.dirty || author.control.touched) && author.control.errors">
+          <ng-container *ngIf="author.control.hasError('required')">文本框不能为空</ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+      <nz-form-label nzFor="intro" nzXs="24" nzSm="6">简介</nz-form-label>
+      <nz-form-control nzSm="6" nzXs="24" nz-col nzHasFeedback>
+        <input nz-input #intro="ngModel" [(ngModel)]="entity.intro" id="intro" name="intro" placeholder="请输入简介">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+      <nz-form-label nzFor="priceUrl" nzXs="24" nzSm="6">购买链接</nz-form-label>
+      <nz-form-control nzSm="6" nzXs="24" nz-col nzHasFeedback>
+        <input nz-input #priceUrl="ngModel" [(ngModel)]="entity.priceUrl" id="priceUrl" name="priceUrl" placeholder="请输入购买链接">
+      </nz-form-control>
+    </nz-form-item>
+  </fieldset>
+
+  <!-- 模态框底部内容 -->
+  <div class="modal-footer">
+    <button (click)="close()" type="button" nzType="default" [disabled]="saving" nz-button><i class="anticon anticon-close-circle-o">取消</i></button>
+    <button type="submit" nzType="primary" nz-button [disabled]="!validateForm.form.valid||saving"><i class="anticon anticon-save">保存</i></button>
+
+
+  </div>
+</form>

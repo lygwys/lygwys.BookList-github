@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\booklist-aspnet-core",
+    "\\src\\booklist-aspnet-core\\src",
+    "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Application",
+    "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Application\\BookListManagement",
+    "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Application\\BookListManagement\\Books",
+    "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Core",
+    "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Core\\BookListManagement"
+  ],
+  "SelectedNode": "\\src\\booklist-aspnet-core\\src\\lygwys.BookList.Application\\BookListManagement\\Books\\IBookAppService.cs",
+  "PreviewInSolutionExplorer": false
+}
