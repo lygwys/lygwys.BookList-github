@@ -19,7 +19,7 @@ namespace lygwys.BookList
             Configuration.Modules.AbpAutoMapper().Configurators.Add(configuration =>
             {
                 // XXXMapper.CreateMappers(configuration);
-                BookMpper.CreateMappings(configuration);
+                BookMapper.CreateMappings(configuration);
 
             });
         }
