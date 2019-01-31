@@ -1,27 +1,59 @@
-﻿using System.Linq;
+
+
+using System.Linq;
 using Abp.Authorization;
+using Abp.Configuration.Startup;
 using Abp.Localization;
+using Abp.MultiTenancy;
 using lygwys.BookList.Authorization;
 
 namespace lygwys.BookList.BookListManagement.Books.Authorization
 {
+    /// <summary>
+    /// 权限配置都在这里。
+    /// 给权限默认设置服务
+    /// See <see cref="BookPermissions" /> for all permission names. Book
+    ///</summary>
     public class BookAuthorizationProvider : AuthorizationProvider
     {
-        public override void SetPermissions(IPermissionDefinitionContext context)  // IPermissionDefinitionContext中有权限的操作方法：添加 检查 删除
+        private readonly bool _isMultiTenancyEnabled;
+
+		public BookAuthorizationProvider()
+		{
+
+		}
+
+        public BookAuthorizationProvider(bool isMultiTenancyEnabled)
         {
-            var pages = context.GetPermissionOrNull(PermissionNames.Pages) ?? context.CreatePermission(PermissionNames.Pages, new FixedLocalizableString("页面"));
-            var admin = pages.Children.FirstOrDefault(a => a.Name == PermissionNames.Pages_Administrator)??pages.CreateChildPermission(PermissionNames.Pages_Administrator,L("Administrator"));
-            var entityPermission = admin.CreateChildPermission(BookPermissions.BookManager, L("BookManager"));
-            entityPermission.CreateChildPermission(BookPermissions.Query, L("Query"));
-            entityPermission.CreateChildPermission(BookPermissions.BatchDelete, L("BatchDelete"));
-            entityPermission.CreateChildPermission(BookPermissions.Create, L("Create"));
-            entityPermission.CreateChildPermission(BookPermissions.Delete, L("Delete"));
-            entityPermission.CreateChildPermission(BookPermissions.Edit, L("Edit"));
+            _isMultiTenancyEnabled = isMultiTenancyEnabled;
         }
 
-        private static ILocalizableString L(string name)
+        public BookAuthorizationProvider(IMultiTenancyConfig multiTenancyConfig)
         {
-            return new LocalizableString(name,BookListConsts.LocalizationSourceName);
+            _isMultiTenancyEnabled = multiTenancyConfig.IsEnabled;
         }
+
+		public override void SetPermissions(IPermissionDefinitionContext context)
+		{
+			// 在这里配置了Book 的权限。
+			var pages = context.GetPermissionOrNull(AppLtmPermissions.Pages) ?? context.CreatePermission(AppLtmPermissions.Pages, L("Pages"));
+
+			var administration = pages.Children.FirstOrDefault(p => p.Name == AppLtmPermissions.Pages_Administration) ?? pages.CreateChildPermission(AppLtmPermissions.Pages_Administration, L("Administration"));
+
+			var entityPermission = administration.CreateChildPermission(BookPermissions.Node , L("Book"));
+			entityPermission.CreateChildPermission(BookPermissions.Query, L("QueryBook"));
+			entityPermission.CreateChildPermission(BookPermissions.Create, L("CreateBook"));
+			entityPermission.CreateChildPermission(BookPermissions.Edit, L("EditBook"));
+			entityPermission.CreateChildPermission(BookPermissions.Delete, L("DeleteBook"));
+			entityPermission.CreateChildPermission(BookPermissions.BatchDelete, L("BatchDeleteBook"));
+			entityPermission.CreateChildPermission(BookPermissions.ExportExcel, L("ExportExcelBook"));
+
+
+		}
+
+		private static ILocalizableString L(string name)
+		{
+			return new LocalizableString(name, BookListConsts.LocalizationSourceName);
+		}
     }
 }

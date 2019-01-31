@@ -6,6 +6,22 @@
     <text name="Booklists" value="书单列表" />
     <text name="Books" value="书籍列表" />
 
+    <!-- 生成的 -->
+
+    <text name="Author"  value="作者"></text>
+    <text name="Intro"  value="简介"></text>
+    <text name="PriceUrl"  value="购买链接"></text>
+    <text name="ImgStrUrl"  value="图片链接"></text>
+
+
+    <text name="Book" value="书"></text>
+    <text name="QueryBook"  value="查询书"></text>
+    <text name="CreateBook"  value="添加书"></text>
+    <text name="EditBook"  value="编辑书"></text>
+    <text name="DeleteBook"  value="删除书"></text>
+    <text name="BatchDeleteBook" value="批量删除书"></text>
+    <text name="ExportBook"  value="导出书"></text>
+
     <!--数据表格-->
     <text name="clearEmpty" value="清空" />
     <text name="NoData" value="暂无数据" />

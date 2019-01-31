@@ -1,7 +1,7 @@
-import { BooksComponent } from './books/books.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BookListsComponent } from './book-lists/book-lists.component';
+import { BookComponent } from './Books/Client/NGZorro/books/book.component';
 
 const routes: Routes = [
   {
@@ -12,9 +12,9 @@ const routes: Routes = [
         component: BookListsComponent,
       },
       {
-        path: 'books',
-        component: BooksComponent,
-        data: { permission: 'Pages.BookManager' },
+        path: 'book',
+        component: BookComponent,
+        data: { permission: 'Pages.Book' },
       },
     ],
   },

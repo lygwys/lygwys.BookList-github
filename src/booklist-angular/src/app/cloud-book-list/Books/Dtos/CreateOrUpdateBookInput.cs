@@ -1,14 +1,14 @@
 
 
 using System.Collections.Generic;
-using Abp.Application.Services.Dto;
+using System.ComponentModel.DataAnnotations;
 using lygwys.BookList.BookListManagement.Books;
 
 namespace lygwys.BookList.BookListManagement.Books.Dtos
 {
-    public class GetBookForEditOutput
+    public class CreateOrUpdateBookInput
     {
-
+        [Required]
         public BookEditDto Book { get; set; }
 
     }

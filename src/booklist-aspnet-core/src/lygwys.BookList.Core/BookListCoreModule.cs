@@ -34,7 +34,7 @@ namespace lygwys.BookList
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
             //给book定义授权信息内容
             Configuration.Authorization.Providers.Add<BookAuthorizationProvider>();
-
+            
             Configuration.Settings.Providers.Add<AppSettingProvider>();
         }
 
