@@ -32,10 +32,10 @@ export class AppMenus {
         '/app/cloud-book-list/booklists',
       ),
       new MenuItem(
-        'Books',
-        'Pages.BookManager',
-        'anticon anticon-book',
-        '/app/cloud-book-list/books',
+        'Book',
+        'Pages.Book',
+        'anticon anticon-dashboard',
+        '/app/cloud-book-list/book',
       ),
     ]),
   ];

@@ -7,7 +7,7 @@
     <text name="Books" value="书籍列表" />
 
     <!-- 生成的 -->
-    <text name="Name"  value="书名"></text>
+
     <text name="Author"  value="作者"></text>
     <text name="Intro"  value="简介"></text>
     <text name="PriceUrl"  value="购买链接"></text>
