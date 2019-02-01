@@ -3,6 +3,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using lygwys.BookList.Authorization;
 using lygwys.BookList.BookListManagement.Books.Mapper;
+using lygwys.BookList.BookListManagement.BookTags.Mapper;
 
 namespace lygwys.BookList
 {
@@ -20,7 +21,7 @@ namespace lygwys.BookList
             {
                 // XXXMapper.CreateMappers(configuration);
                 BookMapper.CreateMappings(configuration);
-
+                BookTagMapper.CreateMappings(configuration);
             });
         }
 

@@ -15,9 +15,9 @@ namespace lygwys.BookList.EntityFrameworkCore
         #region 书单功能实体
         public DbSet<Book> Books{get;set;}
         public DbSet<CloudBookList> CloudBookLists{ get; set; }
-        public DbSet<BookTag> BookTags{ get; set; }
+        public DbSet<BookTag> BookTags { get; set; }
         #endregion
-        
+
         public BookListDbContext(DbContextOptions<BookListDbContext> options)
             : base(options)
         {
