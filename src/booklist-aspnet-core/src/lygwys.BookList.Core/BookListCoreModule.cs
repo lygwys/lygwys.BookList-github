@@ -6,6 +6,7 @@ using Abp.Zero.Configuration;
 using lygwys.BookList.Authorization.Roles;
 using lygwys.BookList.Authorization.Users;
 using lygwys.BookList.BookListManagement.Books.Authorization;
+using lygwys.BookList.BookListManagement.BookTags.Authorization;
 using lygwys.BookList.Configuration;
 using lygwys.BookList.Localization;
 using lygwys.BookList.MultiTenancy;
@@ -34,7 +35,7 @@ namespace lygwys.BookList
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
             //给book定义授权信息内容
             Configuration.Authorization.Providers.Add<BookAuthorizationProvider>();
-            
+            Configuration.Authorization.Providers.Add<BookTagAuthorizationProvider>();
             Configuration.Settings.Providers.Add<AppSettingProvider>();
         }
 
