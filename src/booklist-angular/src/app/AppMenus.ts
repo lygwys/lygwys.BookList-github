@@ -37,6 +37,12 @@ export class AppMenus {
         'anticon anticon-dashboard',
         '/app/cloud-book-list/book',
       ),
+      new MenuItem(
+        'BookTag',
+        'Pages.BookTag',
+        'anticon anticon-dashboard',
+        '/app/cloud-book-list/book-tag',
+      ),
     ]),
   ];
 }

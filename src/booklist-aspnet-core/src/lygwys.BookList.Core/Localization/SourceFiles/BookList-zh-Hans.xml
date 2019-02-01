@@ -7,12 +7,10 @@
     <text name="Books" value="书籍列表" />
 
     <!-- 生成的 -->
-
     <text name="Author"  value="作者"></text>
     <text name="Intro"  value="简介"></text>
     <text name="PriceUrl"  value="购买链接"></text>
     <text name="ImgStrUrl"  value="图片链接"></text>
-
 
     <text name="Book" value="书"></text>
     <text name="QueryBook"  value="查询书"></text>
@@ -21,6 +19,16 @@
     <text name="DeleteBook"  value="删除书"></text>
     <text name="BatchDeleteBook" value="批量删除书"></text>
     <text name="ExportBook"  value="导出书"></text>
+
+    <!-- 生成的BookTag -->
+    <text name="TagName"  value="标签名称"></text>
+    <text name="BookTag" value="图书标签"></text>
+    <text name="QueryBookTag"  value="查询"></text>
+    <text name="CreateBookTag"  value="添加"></text>
+    <text name="EditBookTag"  value="编辑"></text>
+    <text name="DeleteBookTag"  value="删除"></text>
+    <text name="BatchDeleteBookTag" value="批量删除"></text>
+    <text name="ExportBookTag"  value="导出"></text>
 
     <!--数据表格-->
     <text name="clearEmpty" value="清空" />
