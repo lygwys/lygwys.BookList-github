@@ -40,7 +40,7 @@ namespace lygwys.BookList
             );
 
             // TODO:将所有错误信息显示到客户端
-            Configuration.Modules.AbpWebCommon().SendAllExceptionsToClients = false;
+            Configuration.Modules.AbpWebCommon().SendAllExceptionsToClients = true;
 
             // Use database for language management
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();

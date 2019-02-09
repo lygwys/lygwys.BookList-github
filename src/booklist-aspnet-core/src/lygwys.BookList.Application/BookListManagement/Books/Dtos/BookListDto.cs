@@ -1,10 +1,12 @@
 
 
 using System;
+using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities.Auditing;
 using System.ComponentModel.DataAnnotations;
 using lygwys.BookList.BookListManagement.Books;
+using lygwys.BookList.BookListManagement.Relationships;
 
 namespace lygwys.BookList.BookListManagement.Books.Dtos
 {
@@ -55,9 +57,6 @@ namespace lygwys.BookList.BookListManagement.Books.Dtos
 		/// </summary>
 		[Required(ErrorMessage="图片链接不能为空")]
 		public string ImgStrUrl { get; set; }
-
-
-
-
+        
     }
 }

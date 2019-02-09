@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using lygwys.BookList.BookListManagement.Books.Dtos;
 using lygwys.BookList.BookListManagement.BookTags;
 using lygwys.BookList.BookListManagement.BookTags.Dtos;
 
@@ -18,6 +19,10 @@ namespace lygwys.BookList.BookListManagement.BookTags.Mapper
 
             configuration.CreateMap <BookTagEditDto,BookTag>();
             configuration.CreateMap <BookTag,BookTagEditDto>();
+
+
+            configuration.CreateMap<BookTag, BookTagSelectListDto>()
+                .ForMember(a => a.IsSelected, options => options.Ignore());  //忽略IsSelected
 
         }
 	}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Abp.Domain.Entities.Auditing;
+using lygwys.BookList.BookListManagement.Relationships;
 
 namespace lygwys.BookList.BookListManagement.BookTags
 {
@@ -14,5 +15,6 @@ namespace lygwys.BookList.BookListManagement.BookTags
         /// 标签名称
         /// </summary>
         public string TagName { get; set; }
+        public virtual ICollection<BookAndBookTag> BookAndBookTags { get; set; }
     }
 }

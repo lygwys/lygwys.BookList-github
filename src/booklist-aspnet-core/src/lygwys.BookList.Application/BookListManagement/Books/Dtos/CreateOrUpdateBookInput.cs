@@ -10,6 +10,7 @@ namespace lygwys.BookList.BookListManagement.Books.Dtos
     {
         [Required]
         public BookEditDto Book { get; set; }
+        public List<long> TagIds { get; set; }
 
     }
 }

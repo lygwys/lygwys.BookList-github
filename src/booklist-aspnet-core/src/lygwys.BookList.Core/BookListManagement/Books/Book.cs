@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using lygwys.BookList.BookListManagement.Relationships;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,5 +32,8 @@ namespace lygwys.BookList.BookListManagement.Books
         /// 封面图片Url
         /// </summary>
         public string ImgStrUrl { get; set; }
+
+        public virtual ICollection<BookAndBookTag> BookAndBookTags { get; set; }
+
     }
 }

@@ -6,6 +6,7 @@ using lygwys.BookList.MultiTenancy;
 using lygwys.BookList.BookListManagement.Books;
 using lygwys.BookList.BookListManagement.CloudBooksLists;
 using lygwys.BookList.BookListManagement.BookTags;
+using lygwys.BookList.BookListManagement.Relationships;
 
 namespace lygwys.BookList.EntityFrameworkCore
 {
@@ -16,6 +17,7 @@ namespace lygwys.BookList.EntityFrameworkCore
         public DbSet<Book> Books{get;set;}
         public DbSet<CloudBookList> CloudBookLists{ get; set; }
         public DbSet<BookTag> BookTags { get; set; }
+        public DbSet<BookAndBookTag> BookAndBookTags { get; set; }
         #endregion
 
         public BookListDbContext(DbContextOptions<BookListDbContext> options)

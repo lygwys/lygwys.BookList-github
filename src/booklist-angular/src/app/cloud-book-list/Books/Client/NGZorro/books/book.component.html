@@ -86,6 +86,9 @@
         <tr>
           <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
             (nzCheckedChange)="checkAll($event)"></th>
+          <th nz-th nzShowSort nzSortKey="ImgStrUrl">
+            <span>{{l('ImgStrUrl')}}</span>
+          </th>
           <th nz-th nzShowSort nzSortKey="Name">
             <span>{{l('Name')}}</span>
           </th>
@@ -98,9 +101,7 @@
           <th nz-th nzShowSort nzSortKey="PriceUrl">
             <span>{{l('PriceUrl')}}</span>
           </th>
-          <th nz-th nzShowSort nzSortKey="ImgStrUrl">
-            <span>{{l('ImgStrUrl')}}</span>
-          </th>
+
           <th nzWidth="230px" class="text-center">
             <span>{{l('Actions')}}</span>
           </th>
@@ -111,6 +112,17 @@
         <tr *ngFor="let item of ajaxTable.data">
           <!-- 全选框 -->
           <td nzShowCheckbox [(nzChecked)]="item.checked" (nzCheckedChange)="refreshCheckStatus(dataList)"></td>
+
+          <td nz-td>
+            <ellipsis lines="1">
+              <!-- <span nz-tooltip [nzTitle]="item.imgStrUrl">
+                                {{item.imgStrUrl}}
+                            </span> -->
+
+              <img [src]="item.imgStrUrl" />
+
+            </ellipsis>
+          </td>
 
           <td nz-td>
             <ellipsis lines="1">
@@ -133,21 +145,12 @@
               </span>
             </ellipsis>
           </td>
+
           <td nz-td>
             <ellipsis lines="1">
               <span nz-tooltip [nzTitle]="item.priceUrl">
                 {{item.priceUrl}}
               </span>
-            </ellipsis>
-          </td>
-          <td nz-td>
-            <ellipsis lines="1">
-              <!-- <span nz-tooltip [nzTitle]="item.imgStrUrl">
-                                {{item.imgStrUrl}}
-                            </span> -->
-
-              <img [src]="item.imgStrUrl" />
-
             </ellipsis>
           </td>
 

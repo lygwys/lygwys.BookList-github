@@ -49,7 +49,13 @@ namespace lygwys.BookList.BookListManagement.BookTags.DomainService
 			throw new NotImplementedException();
 		}
 
-		// TODO:编写领域业务代码
+        public async Task<List<BookTag>> GetAll()
+        {
+            var models =await _repository.GetAll().AsNoTracking().ToListAsync();
+            return models;
+        }
+
+        // TODO:编写领域业务代码
 
 
 
