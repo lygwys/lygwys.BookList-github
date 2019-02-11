@@ -1,3 +1,4 @@
+import { BooktagNzselectComponent } from './components/booktag-nzselect/booktag-nzselect.component';
 import { AbpModule, LocalizationService } from '@yoyo/abp';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { BookComponent } from './Books/Client/NGZorro/books/book.component';
 import { CreateOrEditBookComponent } from './Books/Client/NGZorro/books/create-or-edit-book/create-or-edit-book.component';
 import { BookTagComponent } from './book-tags/book-tag.component';
 import { CreateOrEditBookTagComponent } from './book-tags/create-or-edit-book-tag/create-or-edit-book-tag.component';
+import { ImgShowComponent } from './components/img-show/img-show.component';
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import { CreateOrEditBookTagComponent } from './book-tags/create-or-edit-book-ta
   declarations: [
     BookListsComponent,
     BookComponent,
+    ImgShowComponent,
+    BooktagNzselectComponent,
     CreateOrEditBookComponent,
     BookTagComponent,
     CreateOrEditBookTagComponent,
@@ -32,6 +36,8 @@ import { CreateOrEditBookTagComponent } from './book-tags/create-or-edit-book-ta
   entryComponents: [
     BookListsComponent,
     BookComponent,
+    ImgShowComponent,
+    BooktagNzselectComponent,
     CreateOrEditBookComponent,
     CreateOrEditBookTagComponent,
   ], // 实际使用到的组件，生产环境编译时用到

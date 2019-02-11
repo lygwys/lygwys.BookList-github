@@ -1,3 +1,5 @@
+import { ImgShowComponent } from './../../../../components/img-show/img-show.component';
+import { ModalHelper } from '@yoyo/theme';
 import { Component, Injector, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -102,6 +104,12 @@ export class BookComponent extends PagedListingComponentBase<BookListDto>
         }
       },
     );
+  }
+
+  showImg(url: string): void {
+    this.modalHelper
+      .open(ImgShowComponent, { imgUrl: url }, 'md')
+      .subscribe(() => {});
   }
 
   /**

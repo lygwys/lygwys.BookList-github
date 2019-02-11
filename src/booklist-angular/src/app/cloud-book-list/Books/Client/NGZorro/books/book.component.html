@@ -119,7 +119,7 @@
                                 {{item.imgStrUrl}}
                             </span> -->
 
-              <img [src]="item.imgStrUrl" />
+              <img [src]="item.imgStrUrl" alt="封面图片" (click)="showImg(item.imgStrUrl)" />
 
             </ellipsis>
           </td>

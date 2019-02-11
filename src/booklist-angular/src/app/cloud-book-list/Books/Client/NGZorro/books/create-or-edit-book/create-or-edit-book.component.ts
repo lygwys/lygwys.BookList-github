@@ -27,6 +27,8 @@ export class CreateOrEditBookComponent extends ModalComponentBase
    */
   id: any;
 
+  tags: any; // 所有书籍的标签
+  selectedTages: any = []; // 已选择的标签集合
   entity: BookEditDto = new BookEditDto();
 
   /**
@@ -46,6 +48,7 @@ export class CreateOrEditBookComponent extends ModalComponentBase
   init(): void {
     this._bookService.getForEdit(this.id).subscribe(result => {
       this.entity = result.book;
+      this.tags = result.bookTags;
     });
   }
 
@@ -58,6 +61,8 @@ export class CreateOrEditBookComponent extends ModalComponentBase
 
     this.saving = true;
 
+    input.tagIds = this.selectedTages;
+
     this._bookService
       .createOrUpdate(input)
       .finally(() => (this.saving = false))
@@ -65,5 +70,12 @@ export class CreateOrEditBookComponent extends ModalComponentBase
         this.notify.success(this.l('SavedSuccessfully'));
         this.success(true);
       });
+  }
+
+  /**
+   * 获取选择的tag值
+   */
+  tagSelectChange(data: any[]) {
+    this.selectedTages = data;
   }
 }

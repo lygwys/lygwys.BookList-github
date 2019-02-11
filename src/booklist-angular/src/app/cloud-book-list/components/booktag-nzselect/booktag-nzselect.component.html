@@ -1,0 +1,7 @@
+<nz-spin [nzTip]="'Loading...'" [nzSpinning]="false">
+  <nz-select nzMode="tags" style="width: 100%;" nzPlaceHolder="请选择或输入图书标签" [(ngModel)]="listOfTagOptions"
+    (ngModelChange)="modelChange()">
+    <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.name" [nzValue]="option.value">
+    </nz-option>
+  </nz-select>
+</nz-spin>

@@ -2697,6 +2697,7 @@ export interface IBookListDto {
 
 export class GetBookForEditOutput implements IGetBookForEditOutput {
     book: BookEditDto | undefined;
+    bookTags: BookTagSelectListDto[] | undefined;
 
     constructor(data?: IGetBookForEditOutput) {
         if (data) {
@@ -2710,6 +2711,11 @@ export class GetBookForEditOutput implements IGetBookForEditOutput {
     init(data?: any) {
         if (data) {
             this.book = data["book"] ? BookEditDto.fromJS(data["book"]) : <any>undefined;
+            if (data["bookTags"] && data["bookTags"].constructor === Array) {
+                this.bookTags = [];
+                for (let item of data["bookTags"])
+                    this.bookTags.push(BookTagSelectListDto.fromJS(item));
+            }
         }
     }
 
@@ -2723,6 +2729,11 @@ export class GetBookForEditOutput implements IGetBookForEditOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["book"] = this.book ? this.book.toJSON() : <any>undefined;
+        if (this.bookTags && this.bookTags.constructor === Array) {
+            data["bookTags"] = [];
+            for (let item of this.bookTags)
+                data["bookTags"].push(item.toJSON());
+        }
         return data; 
     }
 
@@ -2736,6 +2747,7 @@ export class GetBookForEditOutput implements IGetBookForEditOutput {
 
 export interface IGetBookForEditOutput {
     book: BookEditDto | undefined;
+    bookTags: BookTagSelectListDto[] | undefined;
 }
 
 export class BookEditDto implements IBookEditDto {
@@ -2801,8 +2813,68 @@ export interface IBookEditDto {
     imgStrUrl: string;
 }
 
+export class BookTagSelectListDto implements IBookTagSelectListDto {
+    isSelected: boolean | undefined;
+    tagName: string;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
+
+    constructor(data?: IBookTagSelectListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.isSelected = data["isSelected"];
+            this.tagName = data["tagName"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): BookTagSelectListDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new BookTagSelectListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["isSelected"] = this.isSelected;
+        data["tagName"] = this.tagName;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): BookTagSelectListDto {
+        const json = this.toJSON();
+        let result = new BookTagSelectListDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IBookTagSelectListDto {
+    isSelected: boolean | undefined;
+    tagName: string;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
+}
+
 export class CreateOrUpdateBookInput implements ICreateOrUpdateBookInput {
     book: BookEditDto;
+    tagIds: number[] | undefined;
 
     constructor(data?: ICreateOrUpdateBookInput) {
         if (data) {
@@ -2819,6 +2891,11 @@ export class CreateOrUpdateBookInput implements ICreateOrUpdateBookInput {
     init(data?: any) {
         if (data) {
             this.book = data["book"] ? BookEditDto.fromJS(data["book"]) : new BookEditDto();
+            if (data["tagIds"] && data["tagIds"].constructor === Array) {
+                this.tagIds = [];
+                for (let item of data["tagIds"])
+                    this.tagIds.push(item);
+            }
         }
     }
 
@@ -2832,6 +2909,11 @@ export class CreateOrUpdateBookInput implements ICreateOrUpdateBookInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["book"] = this.book ? this.book.toJSON() : <any>undefined;
+        if (this.tagIds && this.tagIds.constructor === Array) {
+            data["tagIds"] = [];
+            for (let item of this.tagIds)
+                data["tagIds"].push(item);
+        }
         return data; 
     }
 
@@ -2845,6 +2927,7 @@ export class CreateOrUpdateBookInput implements ICreateOrUpdateBookInput {
 
 export interface ICreateOrUpdateBookInput {
     book: BookEditDto;
+    tagIds: number[] | undefined;
 }
 
 export class PagedResultDtoOfBookTagListDto implements IPagedResultDtoOfBookTagListDto {
