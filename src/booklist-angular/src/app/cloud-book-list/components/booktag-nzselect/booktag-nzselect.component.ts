@@ -6,6 +6,7 @@ import {
   Output,
   EventEmitter,
   Injector,
+  Input,
 } from '@angular/core';
 import { NzSelectComponent } from 'ng-zorro-antd';
 
@@ -16,17 +17,39 @@ import { NzSelectComponent } from 'ng-zorro-antd';
 })
 export class BooktagNzselectComponent extends AppComponentBase
   implements OnInit {
-  @ViewChild('select') select: NzSelectComponent;
+  @ViewChild('booktagselect') booktagselect: NzSelectComponent;
 
   @Output()
   selectedDataChange = new EventEmitter();
+
+  @Input()
+  set tagsSourceData(value: any) {
+    this.isLoading = true;
+    if (value) {
+      this.listOfTagOptions = value;
+      this.listOfSelectedValue = [];
+      this.listOfTagOptions.forEach(item => {
+        if (item.isSelected) {
+          this.listOfSelectedValue.push(item.id);
+        }
+      });
+    }
+
+    if (this.selectedDataChange) {
+      this.selectedDataChange.emit(this.listOfSelectedValue);
+    }
+
+    this.isLoading = false;
+  }
+  isLoading = true;
+  listOfTagOptions = [];
+  listOfSelectedValue = [];
 
   constructor(injector: Injector) {
     super(injector);
   }
 
-  listOfOption = [];
-  listOfTagOptions = [];
-
+  onSearch() {}
+  modelChange() {}
   ngOnInit(): void {}
 }
