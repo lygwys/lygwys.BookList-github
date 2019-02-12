@@ -87,8 +87,8 @@
     <nz-form-item nz-row>
       <nz-form-label nz-col [nzSm]="6" [nzXs]="24" nzFor="BookTag">{{l('BookTag')}}</nz-form-label>
       <nz-form-control nz-col [nzSm]="14" [nzXs]="24">
-        <!-- app-booktag-nzselect作为CreateOrEditBookComponent的子组件    [tagsSourceData]是流入  (selectTagdataChange)是流出 -->
-        <app-booktag-nzselect name="tag" [tagsSourceData]="tags" (selectTagdataChange)="tagSelectChange($event)"></app-booktag-nzselect>
+        <!-- app-booktag-nzselect作为CreateOrEditBookComponent的子组件    [tagsSourceData]是流入  (selectedDataChange)是流出 -->
+        <app-booktag-nzselect name="tag" [tagsSourceData]="tags" (selectedDataChange)="tagSelectChange($event)"></app-booktag-nzselect>
       </nz-form-control>
     </nz-form-item>
 

@@ -24,6 +24,7 @@ export class BooktagNzselectComponent extends AppComponentBase
 
   @Input()
   set tagsSourceData(value: any) {
+    // 绑定了父组件的属性<app-booktag-nzselect name="tag" [tagsSourceData]="tags"，其实是将父的tags传给了子的value
     this.isLoading = true;
     if (value) {
       this.listOfTagOptions = value;
@@ -49,7 +50,11 @@ export class BooktagNzselectComponent extends AppComponentBase
     super(injector);
   }
 
-  onSearch() {}
-  modelChange() {}
+  handleInputConfim(): void {}
+  modelChange(): void {
+    if (this.selectedDataChange) {
+      this.selectedDataChange.emit(this.listOfSelectedValue);
+    }
+  }
   ngOnInit(): void {}
 }
