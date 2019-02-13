@@ -140,16 +140,15 @@ BookTagEditDto editDto;
 		/// 新增BookTag
 		/// </summary>
 		[AbpAuthorize(BookTagPermissions.Create)]
-		protected virtual async Task<BookTagEditDto> Create(BookTagEditDto input)
+		public virtual async Task<BookTagEditDto> Create(BookTagEditDto input)  //
 		{
 			//TODO:新增前的逻辑判断，是否允许新增
-
-            // var entity = ObjectMapper.Map <BookTag>(input);
             var entity=input.MapTo<BookTag>();
-			
-
-			entity = await _entityRepository.InsertAsync(entity);
-			return entity.MapTo<BookTagEditDto>();
+		    var result = await CheckForDuplicateNamesAsync(entity.TagName);  
+		    if (result.result) return result.entity.MapTo<BookTagEditDto>(); 
+		    var entityId = await _entityRepository.InsertAndGetIdAsync(entity);
+		    entity.Id = entityId;
+		    return entity.MapTo<BookTagEditDto>();
 		}
 
 		/// <summary>
@@ -163,10 +162,29 @@ BookTagEditDto editDto;
 			var entity = await _entityRepository.GetAsync(input.Id.Value);
 			input.MapTo(entity);
 
+		    var result = await CheckForDuplicateNamesAsync(entity.TagName);  //
+		    if (result.result) //
+		    {
+                throw new UserFriendlyException("Tag标签名称重复。");  //
+		    }
+
 			// ObjectMapper.Map(input, entity);
 		    await _entityRepository.UpdateAsync(entity);
 		}
 
+
+
+        private async Task<(bool result,BookTag entity)> CheckForDuplicateNamesAsync(string tagName)
+        {
+            var model = await _entityRepository.FirstOrDefaultAsync(a => a.TagName == tagName);
+
+            if (model != null)
+            {
+                return (result:true,entity:model);
+            }
+
+            return (result:false,new BookTag());
+        }
 
 
 		/// <summary>

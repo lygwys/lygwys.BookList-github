@@ -51,6 +51,13 @@ namespace lygwys.BookList.BookListManagement.BookTags
 
 
         /// <summary>
+        /// 新建书签
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<BookTagEditDto> Create(BookTagEditDto input);
+
+        /// <summary>
         /// 添加或者修改BookTag的公共方法
         /// </summary>
         /// <param name="input"></param>

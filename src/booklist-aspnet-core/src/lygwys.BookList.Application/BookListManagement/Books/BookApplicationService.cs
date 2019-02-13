@@ -192,10 +192,7 @@ namespace lygwys.BookList.BookListManagement.Books
             await _entityRepository.UpdateAsync(entity);
 
             // 创建关联关系   
-            if (tagIds.Count > 0)  //
-            {
-                await _entityManager.CreateBookAndBookTagRelationship(entity.Id, tagIds);
-            }
+            await _entityManager.CreateBookAndBookTagRelationship(entity.Id, tagIds);
         }
 
 
