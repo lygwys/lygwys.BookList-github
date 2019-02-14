@@ -1,7 +1,6 @@
 <page-header [title]="l('Book')"></page-header>
 
 <nz-card [nzBordered]="false">
-
   <div class="mb-md">
     <!-- 模糊搜索框 -->
     <nz-row nzGutter="8">
@@ -10,7 +9,7 @@
           <nz-form-control>
             <nz-input-group nzSearch [nzSuffix]="suffixSearchButton">
               <input type="text" nz-input [(ngModel)]="filterText" (keyup.enter)="refresh()" name="filterText"
-                [placeholder]="l('SearchWithThreeDot')">
+                [placeholder]="l('SearchWithThreeDot')" />
               <ng-template #suffixSearchButton>
                 <button nz-button nzType="primary" nzSearch type="submit" (click)="refresh()">
                   <i class="anticon anticon-search"></i>
@@ -27,25 +26,16 @@
     <!-- 操作常规按钮部分 如： 添加、批量删除、导出Excel表 -->
     <nz-row nzGutter="8">
       <nz-col nzMd="20" nzSm="12" class="btn-gutter">
-
-
         <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.Book.Create')" (click)="createOrEdit()">
-          <i class="anticon anticon-plus"></i>
-          <span>
-            {{l("Create")}}
-          </span>
+          <i class="anticon anticon-plus"></i> <span> {{ l('Create') }} </span>
         </button>
         <button nz-button [nzType]="'danger'" *ngIf="isGranted('Pages.Book.BatchDelete')" (click)="batchDelete()">
           <i class="anticon anticon-delete"></i>
-          <span>
-            {{l("BatchDelete")}}
-          </span>
+          <span> {{ l('BatchDelete') }} </span>
         </button>
         <button nz-button nzType="default" *ngIf="isGranted('Pages.Book.ExportToExcel')" (click)="exportToExcel()">
           <i class="anticon anticon-file-excel"></i>
-          <span>
-            {{l("ExportToExcel")}}
-          </span>
+          <span> {{ l('ExportToExcel') }} </span>
         </button>
       </nz-col>
     </nz-row>
@@ -55,14 +45,12 @@
   <div class="my-md">
     <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
       <ng-template #message>
-        <span [innerHTML]="l('GridSelectedXItemsTips',selectedDataItems.length)"></span>
+        <span [innerHTML]="l('GridSelectedXItemsTips', selectedDataItems.length)"></span>
         <a (click)="restCheckStatus(dataList)" class="ml-md">
-          {{l('ClearEmpty')}}
+          {{ l('ClearEmpty') }}
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="refreshGoFirstPage()">
-          {{l('Refresh')}}
-        </a>
+        <a (click)="refreshGoFirstPage()"> {{ l('Refresh') }} </a>
       </ng-template>
     </nz-alert>
   </div>
@@ -79,31 +67,40 @@
       </ng-template>
       <!-- 分页信息显示 当前 1 页/共 3 页，共 5 条/显示 1-2 条 -->
       <ng-template #showTotalTemplate let-total let-range="range">
-        {{l('GridFooterDisplayText',pageNumber,totalPages,total,range[0],range[1])}}
+        {{
+        l(
+        'GridFooterDisplayText',
+        pageNumber,
+        totalPages,
+        total,
+        range[0],
+        range[1]
+        )
+        }}
       </ng-template>
       <!-- 表头 -->
       <thead (nzSortChange)="gridSort($event)">
         <tr>
           <th nzShowCheckbox [(nzChecked)]="allChecked" [nzDisabled]="allCheckboxDisabled" [nzIndeterminate]="checkboxIndeterminate"
             (nzCheckedChange)="checkAll($event)"></th>
-          <th nz-th nzShowSort nzSortKey="ImgStrUrl">
-            <span>{{l('ImgStrUrl')}}</span>
+          <th nz-th nzShowSort nzSortKey="ImgStrUrl" nzWidth="100px">
+            <span>{{ l('ImgStrUrl') }}</span>
           </th>
-          <th nz-th nzShowSort nzSortKey="Name">
-            <span>{{l('Name')}}</span>
+          <th nz-th nzShowSort nzSortKey="Name" nzWidth="260px">
+            <span>{{ l('Name') }}</span>
           </th>
-          <th nz-th nzShowSort nzSortKey="Author">
-            <span>{{l('Author')}}</span>
+          <th nz-th nzShowSort nzSortKey="Author" nzWidth="260px">
+            <span>{{ l('Author') }}</span>
           </th>
-          <th nz-th nzShowSort nzSortKey="Intro">
-            <span>{{l('Intro')}}</span>
+          <th nz-th nzShowSort nzSortKey="Intro" nzWidth="260px">
+            <span>{{ l('Intro') }}</span>
           </th>
-          <th nz-th nzShowSort nzSortKey="PriceUrl">
-            <span>{{l('PriceUrl')}}</span>
+          <th nz-th nzShowSort nzSortKey="PriceUrl" nzWidth="200px">
+            <span>{{ l('PriceUrl') }}</span>
           </th>
 
           <th nzWidth="230px" class="text-center">
-            <span>{{l('Actions')}}</span>
+            <span>{{ l('Actions') }}</span>
           </th>
         </tr>
       </thead>
@@ -119,48 +116,42 @@
                                 {{item.imgStrUrl}}
                             </span> -->
 
-              <img [src]="item.imgStrUrl" alt="封面图片" (click)="showImg(item.imgStrUrl)" />
-
+              <img [src]="item.imgStrUrl" alt="封面图片" (click)="showImg(item.imgStrUrl)" style="width:50px;" *ngIf="item.imgStrUrl" />
             </ellipsis>
           </td>
 
           <td nz-td>
             <ellipsis lines="1">
-              <span nz-tooltip [nzTitle]="item.name">
-                {{item.name}}
-              </span>
+              <span nz-tooltip [nzTitle]="item.name"> {{ item.name }} </span>
             </ellipsis>
           </td>
           <td nz-td>
             <ellipsis lines="1">
               <span nz-tooltip [nzTitle]="item.author">
-                {{item.author}}
+                {{ item.author }}
               </span>
             </ellipsis>
           </td>
           <td nz-td>
             <ellipsis lines="1">
-              <span nz-tooltip [nzTitle]="item.intro">
-                {{item.intro}}
-              </span>
+              <span nz-tooltip [nzTitle]="item.intro"> {{ item.intro }} </span>
             </ellipsis>
           </td>
 
           <td nz-td>
             <ellipsis lines="1">
               <span nz-tooltip [nzTitle]="item.priceUrl">
-                {{item.priceUrl}}
+                {{ item.priceUrl }}
               </span>
             </ellipsis>
           </td>
-
 
           <td>
             <!-- 编辑 -->
             <ng-container *ngIf="isGranted('Pages.Book.Edit')">
               <a (click)="createOrEdit(item.id)">
                 <i class="anticon anticon-edit mr-sm"></i>
-                <span>{{l('Edit')}}</span>
+                <span>{{ l('Edit') }}</span>
               </a>
               <nz-divider nzType="vertical"></nz-divider>
             </ng-container>
@@ -170,18 +161,23 @@
                 [nzCancelText]="l('Cancel')">
                 <a nz-popconfirm>
                   <i class="anticon anticon-delete mr-sm"></i>
-                  <span>{{l('Delete')}}</span>
+                  <span>{{ l('Delete') }}</span>
                 </a>
               </nz-popconfirm>
             </ng-container>
             <!-- 更多 -->
-            <ng-container *ngIf="isGrantedAny('Pages.Book', 'Pages.Book.Create', 'Pages.Book.Edit')">
+            <ng-container *ngIf="
+                isGrantedAny(
+                  'Pages.Book',
+                  'Pages.Book.Create',
+                  'Pages.Book.Edit'
+                )
+              ">
               <nz-divider nzType="vertical"></nz-divider>
               <nz-dropdown>
                 <a nz-dropdown>
                   <i class="anticon anticon-down"></i>
-                  <span>{{l('More')}}</span>
-
+                  <span>{{ l('More') }}</span>
                 </a>
                 <!-- <ul nz-menu>
                                     <li nz-menu-item  ngIf = "isGranted('Pages.Book.Edit')"  (click)="createOrEdit(item.id) ">
@@ -203,6 +199,5 @@
         </tr>
       </tbody>
     </nz-table>
-
   </nz-row>
 </nz-card>
