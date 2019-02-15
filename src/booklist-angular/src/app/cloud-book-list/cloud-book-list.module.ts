@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CloudBookListRoutingModule } from './cloud-book-list-routing.module';
-import { BookListsComponent } from './book-lists/book-lists.component';
 
 import { SharedModule } from '@shared/shared.module';
 import { TitleService } from 'yoyo-ng-module/src/theme';
@@ -15,6 +14,9 @@ import { CreateOrEditBookComponent } from './Books/Client/NGZorro/books/create-o
 import { BookTagComponent } from './book-tags/book-tag.component';
 import { CreateOrEditBookTagComponent } from './book-tags/create-or-edit-book-tag/create-or-edit-book-tag.component';
 import { ImgShowComponent } from './components/img-show/img-show.component';
+import { CloudBookListComponent } from './cloud-books-lists/cloud-book-list.component';
+// tslint:disable-next-line:max-line-length
+import { CreateOrEditCloudBookListComponent } from './cloud-books-lists/create-or-edit-cloud-book-list/create-or-edit-cloud-book-list.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { ImgShowComponent } from './components/img-show/img-show.component';
     CloudBookListRoutingModule,
   ],
   declarations: [
-    BookListsComponent,
+    CloudBookListComponent,
+    CreateOrEditCloudBookListComponent,
     BookComponent,
     ImgShowComponent,
     BooktagNzselectComponent,
@@ -34,7 +37,8 @@ import { ImgShowComponent } from './components/img-show/img-show.component';
     CreateOrEditBookTagComponent,
   ], // 属于该模块的组件、指令和管道（可声明对象）
   entryComponents: [
-    BookListsComponent,
+    CloudBookListComponent,
+    CreateOrEditCloudBookListComponent,
     BookComponent,
     ImgShowComponent,
     BooktagNzselectComponent,

@@ -4,6 +4,8 @@ using Abp.Reflection.Extensions;
 using lygwys.BookList.Authorization;
 using lygwys.BookList.BookListManagement.Books.Mapper;
 using lygwys.BookList.BookListManagement.BookTags.Mapper;
+using lygwys.BookList.BookListManagement.CloudBooksLists.Authorization;
+using lygwys.BookList.BookListManagement.CloudBooksLists.Mapper;
 
 namespace lygwys.BookList
 {
@@ -15,6 +17,7 @@ namespace lygwys.BookList
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<BookListAuthorizationProvider>();
+            Configuration.Authorization.Providers.Add<CloudBookListAuthorizationProvider>();
 
             // 自定义类型映射
             Configuration.Modules.AbpAutoMapper().Configurators.Add(configuration =>
@@ -22,6 +25,7 @@ namespace lygwys.BookList
                 // XXXMapper.CreateMappers(configuration);
                 BookMapper.CreateMappings(configuration);
                 BookTagMapper.CreateMappings(configuration);
+                CloudBookListMapper.CreateMappings(configuration);
             });
         }
 

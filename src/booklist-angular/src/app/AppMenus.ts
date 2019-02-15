@@ -26,12 +26,6 @@ export class AppMenus {
     // 书单
     new MenuItem('ClouldBooklist', '', 'anticon anticon-switcher', '', [
       new MenuItem(
-        'Booklists',
-        '',
-        'anticon anticon-book',
-        '/app/cloud-book-list/booklists',
-      ),
-      new MenuItem(
         'Book',
         'Pages.Book',
         'anticon anticon-dashboard',
@@ -42,6 +36,12 @@ export class AppMenus {
         'Pages.BookTag',
         'anticon anticon-dashboard',
         '/app/cloud-book-list/book-tag',
+      ),
+      new MenuItem(
+        'CloudBookList',
+        'Pages.CloudBookList',
+        'anticon anticon-dashboard',
+        '/app/cloud-book-list/cloud-book-list',
       ),
     ]),
   ];

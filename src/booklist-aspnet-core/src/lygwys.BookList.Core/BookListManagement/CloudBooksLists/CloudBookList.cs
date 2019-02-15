@@ -1,5 +1,7 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using System.Collections.Generic;
+using Abp.Domain.Entities.Auditing;
 using JetBrains.Annotations;
+using lygwys.BookList.BookListManagement.Relationships;
 
 namespace lygwys.BookList.BookListManagement.CloudBooksLists
 {
@@ -17,5 +19,6 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
         /// 书单简介
         /// </summary>
         public string Intro { get; set; }
+        public virtual ICollection<BookListAndBook> BookListAndBooks { get; set; }
     }
 }

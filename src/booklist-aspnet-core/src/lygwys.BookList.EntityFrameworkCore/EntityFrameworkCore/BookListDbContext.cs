@@ -18,6 +18,8 @@ namespace lygwys.BookList.EntityFrameworkCore
         public DbSet<CloudBookList> CloudBookLists{ get; set; }
         public DbSet<BookTag> BookTags { get; set; }
         public DbSet<BookAndBookTag> BookAndBookTags { get; set; }
+        public DbSet<BookListAndBook> BookListAndBooks { get; set; }
+
         #endregion
 
         public BookListDbContext(DbContextOptions<BookListDbContext> options)

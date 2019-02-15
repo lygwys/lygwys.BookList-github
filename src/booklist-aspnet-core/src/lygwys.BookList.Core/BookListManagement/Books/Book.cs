@@ -34,6 +34,7 @@ namespace lygwys.BookList.BookListManagement.Books
         public string ImgStrUrl { get; set; }
 
         public virtual ICollection<BookAndBookTag> BookAndBookTags { get; set; }
+        public virtual ICollection<BookListAndBook> BookListAndBooks { get; set; }
 
     }
 }
