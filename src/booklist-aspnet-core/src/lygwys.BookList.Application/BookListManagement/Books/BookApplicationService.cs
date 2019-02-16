@@ -23,6 +23,7 @@ using lygwys.BookList.BookListManagement.Books.Dtos;
 using lygwys.BookList.BookListManagement.Books.DomainService;
 using lygwys.BookList.BookListManagement.Books.Authorization;
 using lygwys.BookList.BookListManagement.BookTags.DomainService;
+using lygwys.BookList.BookListManagement.CloudBooksLists.DomainService;
 using lygwys.BookList.BookListManagement.Relationships;
 
 
@@ -40,18 +41,20 @@ namespace lygwys.BookList.BookListManagement.Books
         private readonly IBookTagManager _bookTagManager;
 
         private readonly IRepository<BookAndBookTag, long> _bookAndBookTagRegRepository;
+        private readonly ICloudBookListManager _cloudBookListManager;
 
         /// <summary>
         /// 构造函数 
         ///</summary>
         public BookAppService(
         IRepository<Book, long> entityRepository
-        , IBookManager entityManager, IBookTagManager bookTagManager, IRepository<BookAndBookTag, long> bookAndBookTagRegRepository)
+        , IBookManager entityManager, IBookTagManager bookTagManager, IRepository<BookAndBookTag, long> bookAndBookTagRegRepository, ICloudBookListManager cloudBookListManager)
         {
             _entityRepository = entityRepository;
             _entityManager = entityManager;
             _bookTagManager = bookTagManager;
             _bookAndBookTagRegRepository = bookAndBookTagRegRepository;
+            _cloudBookListManager = cloudBookListManager;
         }
 
 
@@ -205,9 +208,9 @@ namespace lygwys.BookList.BookListManagement.Books
         [AbpAuthorize(BookPermissions.Delete)]
         public async Task Delete(EntityDto<long> input)
         {
-            //TODO:删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(input.Id);
             await _bookAndBookTagRegRepository.DeleteAsync(a => a.BookId == input.Id);  //
+            await _entityRepository.DeleteAsync(input.Id);
+            await _cloudBookListManager.DeleteByBookId(input.Id); //
         }
 
 
@@ -218,9 +221,10 @@ namespace lygwys.BookList.BookListManagement.Books
         [AbpAuthorize(BookPermissions.BatchDelete)]
         public async Task BatchDelete(List<long> input)
         {
-            // TODO:批量删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
             await _bookAndBookTagRegRepository.DeleteAsync(a => input.Contains(a.BookId)); //
+            await _cloudBookListManager.DeleteByBookId(input); //
+            await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
+            
         }
 
 

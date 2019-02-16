@@ -10,6 +10,6 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists.Dtos
     {
         [Required]
         public CloudBookListEditDto CloudBookList { get; set; }
-
+        public List<long> BookIds { get; set; }  //
     }
 }

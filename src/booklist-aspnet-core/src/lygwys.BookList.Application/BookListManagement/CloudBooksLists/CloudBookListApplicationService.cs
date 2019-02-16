@@ -22,6 +22,7 @@ using lygwys.BookList.BookListManagement.CloudBooksLists;
 using lygwys.BookList.BookListManagement.CloudBooksLists.Dtos;
 using lygwys.BookList.BookListManagement.CloudBooksLists.DomainService;
 using lygwys.BookList.BookListManagement.CloudBooksLists.Authorization;
+using lygwys.BookList.BookListManagement.Relationships;
 
 
 namespace lygwys.BookList.BookListManagement.CloudBooksLists
@@ -35,17 +36,18 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
         private readonly IRepository<CloudBookList, long> _entityRepository;
 
         private readonly ICloudBookListManager _entityManager;
+        private readonly IRepository<BookListAndBook, long> _bookListAndBookRepository; //
 
         /// <summary>
         /// 构造函数 
         ///</summary>
         public CloudBookListAppService(
         IRepository<CloudBookList, long> entityRepository
-        ,ICloudBookListManager entityManager
-        )
+        ,ICloudBookListManager entityManager, IRepository<BookListAndBook, long> bookListAndBookRepository)
         {
             _entityRepository = entityRepository; 
              _entityManager=entityManager;
+            _bookListAndBookRepository = bookListAndBookRepository;
         }
 
 
@@ -127,11 +129,11 @@ CloudBookListEditDto editDto;
 
 			if (input.CloudBookList.Id.HasValue)
 			{
-				await Update(input.CloudBookList);
+				await Update(input.CloudBookList,input.BookIds); //
 			}
 			else
 			{
-				await Create(input.CloudBookList);
+				await Create(input.CloudBookList, input.BookIds); //
 			}
 		}
 
@@ -140,15 +142,17 @@ CloudBookListEditDto editDto;
 		/// 新增CloudBookList
 		/// </summary>
 		[AbpAuthorize(CloudBookListPermissions.Create)]
-		protected virtual async Task<CloudBookListEditDto> Create(CloudBookListEditDto input)
+		protected virtual async Task<CloudBookListEditDto> Create(CloudBookListEditDto input, List<long> bookIds)  //
 		{
 			//TODO:新增前的逻辑判断，是否允许新增
 
             // var entity = ObjectMapper.Map <CloudBookList>(input);
             var entity=input.MapTo<CloudBookList>();
-			
-
-			entity = await _entityRepository.InsertAsync(entity);
+		    var entityId = await _entityRepository.InsertAndGetIdAsync(entity);
+		    if (bookIds.Count>0)
+		    {
+		        await _entityManager.CreateBookListAndBookRelationship(entityId, bookIds);
+		    }
 			return entity.MapTo<CloudBookListEditDto>();
 		}
 
@@ -156,7 +160,7 @@ CloudBookListEditDto editDto;
 		/// 编辑CloudBookList
 		/// </summary>
 		[AbpAuthorize(CloudBookListPermissions.Edit)]
-		protected virtual async Task Update(CloudBookListEditDto input)
+		protected virtual async Task Update(CloudBookListEditDto input,List<long> bookIds)  //
 		{
 			//TODO:更新前的逻辑判断，是否允许更新
 
@@ -165,7 +169,11 @@ CloudBookListEditDto editDto;
 
 			// ObjectMapper.Map(input, entity);
 		    await _entityRepository.UpdateAsync(entity);
-		}
+		    if (bookIds.Count > 0)  //
+		    {
+		        await _entityManager.CreateBookListAndBookRelationship(entity.Id, bookIds);
+		    }
+        }
 
 
 
@@ -177,6 +185,7 @@ CloudBookListEditDto editDto;
 		[AbpAuthorize(CloudBookListPermissions.Delete)]
 		public async Task Delete(EntityDto<long> input)
 		{
+		    await _entityManager.DeleteByBookListId(input.Id);   //
 			//TODO:删除前的逻辑判断，是否允许删除
 			await _entityRepository.DeleteAsync(input.Id);
 		}
@@ -190,6 +199,7 @@ CloudBookListEditDto editDto;
 		public async Task BatchDelete(List<long> input)
 		{
 			// TODO:批量删除前的逻辑判断，是否允许删除
+		    await _entityManager.DeleteByBookListId(input); //
 			await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
 		}
 
