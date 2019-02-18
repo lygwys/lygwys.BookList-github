@@ -17,6 +17,7 @@ import { ImgShowComponent } from './components/img-show/img-show.component';
 import { CloudBookListComponent } from './cloud-books-lists/cloud-book-list.component';
 // tslint:disable-next-line:max-line-length
 import { CreateOrEditCloudBookListComponent } from './cloud-books-lists/create-or-edit-cloud-book-list/create-or-edit-cloud-book-list.component';
+import { BookNzselectComponent } from './components/book-nzselect/book-nzselect.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { CreateOrEditCloudBookListComponent } from './cloud-books-lists/create-o
     BookComponent,
     ImgShowComponent,
     BooktagNzselectComponent,
+    BookNzselectComponent,
     CreateOrEditBookComponent,
     BookTagComponent,
     CreateOrEditBookTagComponent,
@@ -42,6 +44,7 @@ import { CreateOrEditCloudBookListComponent } from './cloud-books-lists/create-o
     BookComponent,
     ImgShowComponent,
     BooktagNzselectComponent,
+    BookNzselectComponent,
     CreateOrEditBookComponent,
     CreateOrEditBookTagComponent,
   ], // 实际使用到的组件，生产环境编译时用到
