@@ -3741,6 +3741,7 @@ export interface ICloudBookListListDto {
 
 export class GetCloudBookListForEditOutput implements IGetCloudBookListForEditOutput {
     cloudBookList: CloudBookListEditDto | undefined;
+    books: BookSelectListDto[] | undefined;
 
     constructor(data?: IGetCloudBookListForEditOutput) {
         if (data) {
@@ -3754,6 +3755,11 @@ export class GetCloudBookListForEditOutput implements IGetCloudBookListForEditOu
     init(data?: any) {
         if (data) {
             this.cloudBookList = data["cloudBookList"] ? CloudBookListEditDto.fromJS(data["cloudBookList"]) : <any>undefined;
+            if (data["books"] && data["books"].constructor === Array) {
+                this.books = [];
+                for (let item of data["books"])
+                    this.books.push(BookSelectListDto.fromJS(item));
+            }
         }
     }
 
@@ -3767,6 +3773,11 @@ export class GetCloudBookListForEditOutput implements IGetCloudBookListForEditOu
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["cloudBookList"] = this.cloudBookList ? this.cloudBookList.toJSON() : <any>undefined;
+        if (this.books && this.books.constructor === Array) {
+            data["books"] = [];
+            for (let item of this.books)
+                data["books"].push(item.toJSON());
+        }
         return data; 
     }
 
@@ -3780,6 +3791,7 @@ export class GetCloudBookListForEditOutput implements IGetCloudBookListForEditOu
 
 export interface IGetCloudBookListForEditOutput {
     cloudBookList: CloudBookListEditDto | undefined;
+    books: BookSelectListDto[] | undefined;
 }
 
 export class CloudBookListEditDto implements ICloudBookListEditDto {
@@ -3833,8 +3845,84 @@ export interface ICloudBookListEditDto {
     intro: string | undefined;
 }
 
+export class BookSelectListDto implements IBookSelectListDto {
+    isSelected: boolean | undefined;
+    name: string;
+    author: string;
+    intro: string;
+    priceUrl: string;
+    imgStrUrl: string;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
+
+    constructor(data?: IBookSelectListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.isSelected = data["isSelected"];
+            this.name = data["name"];
+            this.author = data["author"];
+            this.intro = data["intro"];
+            this.priceUrl = data["priceUrl"];
+            this.imgStrUrl = data["imgStrUrl"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): BookSelectListDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new BookSelectListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["isSelected"] = this.isSelected;
+        data["name"] = this.name;
+        data["author"] = this.author;
+        data["intro"] = this.intro;
+        data["priceUrl"] = this.priceUrl;
+        data["imgStrUrl"] = this.imgStrUrl;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): BookSelectListDto {
+        const json = this.toJSON();
+        let result = new BookSelectListDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IBookSelectListDto {
+    isSelected: boolean | undefined;
+    name: string;
+    author: string;
+    intro: string;
+    priceUrl: string;
+    imgStrUrl: string;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
+}
+
 export class CreateOrUpdateCloudBookListInput implements ICreateOrUpdateCloudBookListInput {
     cloudBookList: CloudBookListEditDto;
+    bookIds: number[] | undefined;
 
     constructor(data?: ICreateOrUpdateCloudBookListInput) {
         if (data) {
@@ -3851,6 +3939,11 @@ export class CreateOrUpdateCloudBookListInput implements ICreateOrUpdateCloudBoo
     init(data?: any) {
         if (data) {
             this.cloudBookList = data["cloudBookList"] ? CloudBookListEditDto.fromJS(data["cloudBookList"]) : new CloudBookListEditDto();
+            if (data["bookIds"] && data["bookIds"].constructor === Array) {
+                this.bookIds = [];
+                for (let item of data["bookIds"])
+                    this.bookIds.push(item);
+            }
         }
     }
 
@@ -3864,6 +3957,11 @@ export class CreateOrUpdateCloudBookListInput implements ICreateOrUpdateCloudBoo
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["cloudBookList"] = this.cloudBookList ? this.cloudBookList.toJSON() : <any>undefined;
+        if (this.bookIds && this.bookIds.constructor === Array) {
+            data["bookIds"] = [];
+            for (let item of this.bookIds)
+                data["bookIds"].push(item);
+        }
         return data; 
     }
 
@@ -3877,6 +3975,7 @@ export class CreateOrUpdateCloudBookListInput implements ICreateOrUpdateCloudBoo
 
 export interface ICreateOrUpdateCloudBookListInput {
     cloudBookList: CloudBookListEditDto;
+    bookIds: number[] | undefined;
 }
 
 export class ChangeUiThemeInput implements IChangeUiThemeInput {

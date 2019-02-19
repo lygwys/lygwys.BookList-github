@@ -87,6 +87,22 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists.DomainService
             await _bookListAndBookRepository.DeleteAsync(a =>bookListIds.Contains(a.CloudBookListId));
         }
 
+        public async Task<List<BookListAndBook>> GetByBookListIdAsync(long? bookListId)
+        {
+            return await _bookListAndBookRepository.GetAll()
+                .AsNoTracking()
+                .Where(o => o.CloudBookListId == bookListId.Value)
+                .ToListAsync();
+        }
+
+        public async Task<List<BookListAndBook>> GetByBookIdAsync(long? bookId)
+        {
+            return await _bookListAndBookRepository.GetAll()
+                .AsNoTracking()
+                .Where(o => o.BookId == bookId.Value)
+                .ToListAsync();
+        }
+
 
         /// <summary>
         /// 初始化

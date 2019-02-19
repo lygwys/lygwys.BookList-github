@@ -3,8 +3,13 @@
   <texts>
     <!--云书单模块-->
     <text name="ClouldBooklist" value="云书单" />
+
     <text name="Booklists" value="书单列表" />
     <text name="Books" value="书籍列表" />
+
+
+    CloudBookList
+
 
     <!-- 生成的 -->
     <text name="Author"  value="作者"></text>

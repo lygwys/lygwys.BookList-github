@@ -38,7 +38,7 @@ export class AppMenus {
         '/app/cloud-book-list/book-tag',
       ),
       new MenuItem(
-        'CloudBookList',
+        'ClouldBooklist',
         'Pages.CloudBookList',
         'anticon anticon-dashboard',
         '/app/cloud-book-list/cloud-book-list',

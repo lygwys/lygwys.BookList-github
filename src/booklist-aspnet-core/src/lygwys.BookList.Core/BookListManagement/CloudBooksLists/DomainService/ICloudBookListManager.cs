@@ -55,5 +55,21 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists.DomainService
         /// <param name="bookListIds"></param>
         /// <returns></returns>
         Task DeleteByBookListId(List<long> bookListIds);
+
+
+        /// <summary>
+        /// 根据书单Id获取所有关联
+        /// </summary>
+        /// <param name="bookListId"></param>
+        /// <returns></returns>
+        Task<List<BookListAndBook>> GetByBookListIdAsync(long? bookListId);
+
+
+        /// <summary>
+        /// 根据书籍Id获取所有关联
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        Task<List<BookListAndBook>> GetByBookIdAsync(long? bookId);
     }
 }

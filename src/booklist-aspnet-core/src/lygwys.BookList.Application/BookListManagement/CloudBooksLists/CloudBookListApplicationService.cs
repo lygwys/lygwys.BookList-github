@@ -16,8 +16,8 @@ using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Application.Services.Dto;
 using Abp.Linq.Extensions;
-
-
+using lygwys.BookList.BookListManagement.Books;
+using lygwys.BookList.BookListManagement.Books.Dtos;
 using lygwys.BookList.BookListManagement.CloudBooksLists;
 using lygwys.BookList.BookListManagement.CloudBooksLists.Dtos;
 using lygwys.BookList.BookListManagement.CloudBooksLists.DomainService;
@@ -37,17 +37,19 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
 
         private readonly ICloudBookListManager _entityManager;
         private readonly IRepository<BookListAndBook, long> _bookListAndBookRepository; //
+        private readonly IRepository<Book, long> _bookRepository; //
 
         /// <summary>
         /// 构造函数 
         ///</summary>
         public CloudBookListAppService(
         IRepository<CloudBookList, long> entityRepository
-        ,ICloudBookListManager entityManager, IRepository<BookListAndBook, long> bookListAndBookRepository)
+        ,ICloudBookListManager entityManager, IRepository<BookListAndBook, long> bookListAndBookRepository, IRepository<Book, long> bookRepository)
         {
             _entityRepository = entityRepository; 
              _entityManager=entityManager;
             _bookListAndBookRepository = bookListAndBookRepository;
+            _bookRepository = bookRepository;
         }
 
 
@@ -98,15 +100,27 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
 		public async Task<GetCloudBookListForEditOutput> GetForEdit(NullableIdDto<long> input)
 		{
 			var output = new GetCloudBookListForEditOutput();
-CloudBookListEditDto editDto;
+            CloudBookListEditDto editDto;
+		    var allBooklistDtos = (await _bookRepository.GetAllListAsync()).MapTo<List<BookSelectListDto>>();
 
-			if (input.Id.HasValue)
+            if (input.Id.HasValue)
 			{
 				var entity = await _entityRepository.GetAsync(input.Id.Value);
 
 				editDto = entity.MapTo<CloudBookListEditDto>();
 
 				//cloudBookListEditDto = ObjectMapper.Map<List<cloudBookListEditDto>>(entity);
+
+			    var bookids= (await _entityManager.GetByBookListIdAsync(entity.Id)).Select(a=>a.BookId).ToList();
+			    
+			    foreach (var book in allBooklistDtos)
+			    {
+			        if (bookids.Exists(a => a == book.Id))
+			        {
+			            book.IsSelected = true;
+			        }
+			    }
+
 			}
 			else
 			{
@@ -114,6 +128,7 @@ CloudBookListEditDto editDto;
 			}
 
 			output.CloudBookList = editDto;
+		    output.Books = allBooklistDtos;
 			return output;
 		}
 

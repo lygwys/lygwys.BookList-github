@@ -19,6 +19,8 @@ namespace lygwys.BookList.BookListManagement.Books.Mapper
             configuration.CreateMap <BookEditDto,Book>();
             configuration.CreateMap <Book,BookEditDto>();
 
+            configuration.CreateMap<Book, BookSelectListDto>()
+                .ForMember(a => a.IsSelected, options => options.Ignore());
         }
 	}
 }

@@ -26,16 +26,33 @@ export class BookNzselectComponent extends AppComponentBase implements OnInit {
   @Output()
   selectedDataChange = new EventEmitter();
 
-  @Input()
-  bookSourceDataChange = new EventEmitter();
-
   isLoading = true;
-  listOfTagOptions = [];
-
+  listOfOption = [];
   listOfSelectedValue = [];
 
   @Input()
-  set bookSourceData(value: any) {}
+  set bookSourceData(values: any) {
+    this.isLoading = true;
+    if (values) {
+      this.listOfOption = values;
+      this.listOfSelectedValue = [];
+      this.listOfOption.forEach(item => {
+        if (item.isSelected) {
+          this.listOfSelectedValue.push(item.id);
+        }
+      });
+    }
+    if (this.selectedDataChange) {
+      this.selectedDataChange.emit(this.listOfSelectedValue);
+    }
+    this.isLoading = false;
+  }
 
   ngOnInit() {}
+
+  modelChange(): void {
+    if (this.selectedDataChange) {
+      this.selectedDataChange.emit(this.listOfSelectedValue);
+    }
+  }
 }
