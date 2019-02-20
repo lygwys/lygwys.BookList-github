@@ -121,4 +121,12 @@ export class BookComponent extends PagedListingComponentBase<BookListDto>
     // this._fileDownloadService.downloadTempFile(result);
     // });
   }
+
+  // 分享二维码功能
+  shareQrCode(id: string) {
+    const url = AppConsts.appBaseUrl + '/public/book-list-share;id=' + id;
+    // this.modalHelper.open();
+  }
+
+  // todo://多租户功能//二维码分享//增强性的功能
 }

@@ -16,6 +16,7 @@ import {
 import { Validators, AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'create-or-edit-cloud-book-list',
   templateUrl: './create-or-edit-cloud-book-list.component.html',
   styleUrls: ['create-or-edit-cloud-book-list.component.less'],
