@@ -10,7 +10,7 @@ namespace lygwys.BookList.BookListManagement.Books
     /// <summary>
     /// 书籍
     /// </summary>
-    public class Book: CreationAuditedEntity<long>
+    public class Book: CreationAuditedEntity<long>,IMustHaveTenant
     {
         /// <summary>
         /// 书名
@@ -36,5 +36,6 @@ namespace lygwys.BookList.BookListManagement.Books
         public virtual ICollection<BookAndBookTag> BookAndBookTags { get; set; }
         public virtual ICollection<BookListAndBook> BookListAndBooks { get; set; }
 
+        public int TenantId { get; set; }
     }
 }

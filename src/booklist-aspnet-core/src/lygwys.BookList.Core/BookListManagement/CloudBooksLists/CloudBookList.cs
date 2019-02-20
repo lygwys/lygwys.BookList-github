@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using JetBrains.Annotations;
 using lygwys.BookList.BookListManagement.Relationships;
@@ -9,7 +10,7 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
     /// 书单
     /// </summary>
     [UsedImplicitly]
-    public class CloudBookList : CreationAuditedEntity<long>
+    public class CloudBookList : CreationAuditedEntity<long>, IMustHaveTenant
     {
         /// <summary>
         /// 书单名称
@@ -20,5 +21,6 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists
         /// </summary>
         public string Intro { get; set; }
         public virtual ICollection<BookListAndBook> BookListAndBooks { get; set; }
+        public int TenantId { get; set; }
     }
 }
