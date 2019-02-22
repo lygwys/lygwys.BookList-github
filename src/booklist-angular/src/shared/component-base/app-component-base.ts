@@ -1,7 +1,16 @@
 import { Injector, ElementRef } from '@angular/core';
 import { AppConsts } from '@shared/AppConsts';
 import { AppSessionService } from '@shared/session/app-session.service';
-import { NotifyService, SettingService, MessageService, LocalizationService, AbpMultiTenancyService, FeatureCheckerService, PermissionCheckerService } from '@yoyo/abp';
+// tslint:disable-next-line:max-line-length
+import {
+  NotifyService,
+  SettingService,
+  MessageService,
+  LocalizationService,
+  AbpMultiTenancyService,
+  FeatureCheckerService,
+  PermissionCheckerService,
+} from '@yoyo/abp';
 import { ModalHelper } from '@yoyo/theme';
 
 export abstract class AppComponentBase {

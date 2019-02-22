@@ -29,7 +29,7 @@ namespace lygwys.BookList.MultiTenancy
             _passwordHasher = passwordHasher;
         }
 
-        public async Task<TenantDto> RegisterTenant(CreateTenantDto input)
+        public async Task<TenantDto> RegisterTenantAsync(CreateTenantDto input)
         {
             var tenant = new Tenant(input.TenancyName,input.Name)
             {

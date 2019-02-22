@@ -35,7 +35,7 @@ import { TenantRegisterComponent } from './tenant-register/tenant-register.compo
     AbpModule,
     SharedModule,
     ServiceProxyModule,
-    AccountRoutingModule
+    AccountRoutingModule,
   ],
   declarations: [
     AccountComponent,
@@ -46,9 +46,7 @@ import { TenantRegisterComponent } from './tenant-register/tenant-register.compo
     AccountLanguagesComponent,
     TenantRegisterComponent,
   ],
-  entryComponents: [
-    TenantChangeModalComponent
-  ],
+  entryComponents: [TenantChangeModalComponent],
   providers: [LoginService],
 })
-export class AccountModule { }
+export class AccountModule {}

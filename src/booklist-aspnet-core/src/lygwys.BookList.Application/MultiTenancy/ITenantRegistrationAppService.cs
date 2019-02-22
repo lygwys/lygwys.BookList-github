@@ -11,6 +11,6 @@ namespace lygwys.BookList.MultiTenancy
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<TenantDto> RegisterTenant(CreateTenantDto input);
+        Task<TenantDto> RegisterTenantAsync(CreateTenantDto input);
     }
 }
