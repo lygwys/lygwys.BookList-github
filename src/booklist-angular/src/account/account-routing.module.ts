@@ -3,7 +3,8 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account.component';
-import {} from '@shared/auth';
+
+import { TenantRegisterComponent } from './tenant-register/tenant-register.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {} from '@shared/auth';
         children: [
           { path: 'login', component: LoginComponent },
           { path: 'register', component: RegisterComponent },
+          { path: 'tenant-register', component: TenantRegisterComponent },
         ],
       },
     ]),

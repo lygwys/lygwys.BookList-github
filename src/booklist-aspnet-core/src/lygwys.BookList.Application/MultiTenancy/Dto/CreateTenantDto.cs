@@ -25,5 +25,7 @@ namespace lygwys.BookList.MultiTenancy.Dto
         public string ConnectionString { get; set; }
 
         public bool IsActive {get; set;}
+
+        public string PassWord { get; set; }
     }
 }
