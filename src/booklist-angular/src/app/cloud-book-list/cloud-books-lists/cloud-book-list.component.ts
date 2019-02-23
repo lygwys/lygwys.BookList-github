@@ -1,3 +1,4 @@
+import { ShareQrcodeComponent } from './../../../shared/components/share-qrcode/share-qrcode.component';
 import { Component, Injector, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -11,6 +12,7 @@ import {
   CloudBookListListDto,
   CloudBookListServiceProxy,
 } from '@shared/service-proxies/service-proxies';
+import { identifierModuleUrl } from '@angular/compiler';
 //  import { FileDownloadService } from '@shared/utils/file-download.service';
 
 @Component({
@@ -116,4 +118,15 @@ export class CloudBookListComponent
     // this._fileDownloadService.downloadTempFile(result);
     // });
   }
+
+  // 分享二维码功能
+  shareQrCode(id: string, tid: string) {
+    const url = AppConsts.appBaseUrl + '/public/book-list-share;tid=' + tid +
+     ';id=' + id;
+    this.modalHelper
+      .open(ShareQrcodeComponent, { qrcodeUrl: url }, 'sm')
+      .subscribe(() => {});
+  }
+
+  // todo://多租户功能  //二维码分享//增强型的功能
 }
