@@ -1,3 +1,4 @@
+import { AbpSessionService } from '@yoyo/abp/session/abp-session.service';
 import { ShareQrcodeComponent } from './../../../shared/components/share-qrcode/share-qrcode.component';
 import { Component, Injector, OnInit } from '@angular/core';
 import * as _ from 'lodash';
@@ -25,6 +26,7 @@ export class CloudBookListComponent
   implements OnInit {
   constructor(
     injector: Injector,
+    private _abpsession: AbpSessionService,
     private _cloudBookListService: CloudBookListServiceProxy,
   ) {
     super(injector);
@@ -120,9 +122,14 @@ export class CloudBookListComponent
   }
 
   // 分享二维码功能
-  shareQrCode(id: string, tid: string) {
-    const url = AppConsts.appBaseUrl + '/public/book-list-share;tid=' + tid +
-     ';id=' + id;
+  shareQrCode(userid: string) {
+    const tid = this._abpsession.tenantId;
+    const url =
+      AppConsts.appBaseUrl +
+      '/public/book-list-share;tid=' +
+      tid +
+      ';id=' +
+      userid;
     this.modalHelper
       .open(ShareQrcodeComponent, { qrcodeUrl: url }, 'sm')
       .subscribe(() => {});
