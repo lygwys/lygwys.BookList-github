@@ -21,6 +21,8 @@ namespace lygwys.BookList.BookListManagement.Books.Mapper
 
             configuration.CreateMap<Book, BookSelectListDto>()
                 .ForMember(a => a.IsSelected, options => options.Ignore());
+
+            configuration.CreateMap<Book, BookIncludeTagDto>().ForMember(a=>a.BookTags,memberOptions:opt=>opt.Ignore());  // 将Book映射到BookIncludeTagDto 忽略掉BookTags
         }
 	}
 }

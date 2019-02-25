@@ -122,14 +122,14 @@ export class CloudBookListComponent
   }
 
   // 分享二维码功能
-  shareQrCode(userid: string) {
+  shareQrCode(cloudbookListId: string) {
     const tid = this._abpsession.tenantId;
     const url =
       AppConsts.appBaseUrl +
       '/public/book-list-share;tid=' +
       tid +
       ';id=' +
-      userid;
+      cloudbookListId;
     this.modalHelper
       .open(ShareQrcodeComponent, { qrcodeUrl: url }, 'sm')
       .subscribe(() => {});

@@ -20,6 +20,7 @@ using Abp.Application.Services.Dto;
 
 using lygwys.BookList.BookListManagement.Books.Dtos;
 using lygwys.BookList.BookListManagement.Books;
+using lygwys.BookList.BookListManagement.CloudBooksLists.Dtos;
 
 namespace lygwys.BookList.BookListManagement.Books
 {
@@ -71,12 +72,20 @@ namespace lygwys.BookList.BookListManagement.Books
         /// </summary>
         Task BatchDelete(List<long> input);
 
+        /// <summary>
+        /// 获取分享书单信息的接口
+        /// </summary>
+        /// <param name="cloudbookListId">云书单ID内容</param>
+        /// <param name="tenantId"></param>
+        /// <returns></returns>
+        Task<CloudBookListShareDto> GetBookListShareAsync(long cloudbookListId,int tenantId);
 
-		/// <summary>
+
+        /// <summary>
         /// 导出Book为excel表
         /// </summary>
         /// <returns></returns>
-		//Task<FileDto> GetToExcel();
+        //Task<FileDto> GetToExcel();
 
     }
 }

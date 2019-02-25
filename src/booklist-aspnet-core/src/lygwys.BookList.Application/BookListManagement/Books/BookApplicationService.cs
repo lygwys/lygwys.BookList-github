@@ -25,17 +25,19 @@ using lygwys.BookList.BookListManagement.Books.Authorization;
 using lygwys.BookList.BookListManagement.BookTags.DomainService;
 using lygwys.BookList.BookListManagement.CloudBooksLists.DomainService;
 using lygwys.BookList.BookListManagement.Relationships;
-
+using lygwys.BookList.BookListManagement.CloudBooksLists;
+using lygwys.BookList.BookListManagement.CloudBooksLists.Dtos;
 
 namespace lygwys.BookList.BookListManagement.Books
 {
     /// <summary>
     /// Book应用层服务的接口实现方法  
     ///</summary>
-    [AbpAuthorize]
+//    [AbpAuthorize]
     public class BookAppService : BookListAppServiceBase, IBookAppService
     {
         private readonly IRepository<Book, long> _entityRepository;
+        private readonly IRepository<CloudBookList, long> _cloudBookListRepository;
 
         private readonly IBookManager _entityManager;
         private readonly IBookTagManager _bookTagManager;
@@ -48,13 +50,14 @@ namespace lygwys.BookList.BookListManagement.Books
         ///</summary>
         public BookAppService(
         IRepository<Book, long> entityRepository
-        , IBookManager entityManager, IBookTagManager bookTagManager, IRepository<BookAndBookTag, long> bookAndBookTagRegRepository, ICloudBookListManager cloudBookListManager)
+        , IBookManager entityManager, IBookTagManager bookTagManager, IRepository<BookAndBookTag, long> bookAndBookTagRegRepository, ICloudBookListManager cloudBookListManager, IRepository<CloudBookList, long> cloudBookListRepository)
         {
             _entityRepository = entityRepository;
             _entityManager = entityManager;
             _bookTagManager = bookTagManager;
             _bookAndBookTagRegRepository = bookAndBookTagRegRepository;
             _cloudBookListManager = cloudBookListManager;
+            _cloudBookListRepository = cloudBookListRepository;
         }
 
 
@@ -225,6 +228,65 @@ namespace lygwys.BookList.BookListManagement.Books
             await _cloudBookListManager.DeleteByBookId(input); //
             await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
             
+        }
+
+        public async Task<CloudBookListShareDto> GetBookListShareAsync(long cloudbookListId, int tenantId)
+        {
+            if (cloudbookListId <= 0||tenantId<=0)
+            {
+                throw new UserFriendlyException(message:"租户或书单ID不能为空");
+            }
+
+            var tenant = await TenantManager.GetByIdAsync(tenantId);
+            if (tenant==null)
+            {
+                throw new UserFriendlyException(message: "该租户下没有书单");
+            }
+            // 设置当前工作单元的租户ID
+            using (CurrentUnitOfWork.SetTenantId(tenantId))
+            {
+                // 获取云书单内容信息
+                var cloudBookList = await _cloudBookListRepository.GetAll()
+                    .Include(a=>a.BookListAndBooks)
+                    .ThenInclude(a=>a.Book)
+                    .ThenInclude(a=>a.BookAndBookTags)
+                    .ThenInclude(a=>a.BookTag)
+                    .IgnoreQueryFilters()
+                    .Where(b => b.Id == cloudbookListId).FirstOrDefaultAsync();
+                var dto= cloudBookList.MapTo<CloudBookListShareDto>();
+                if (cloudBookList.CreatorUserId.HasValue)
+                {
+                    var user = UserManager.Users.IgnoreQueryFilters()
+                        .FirstOrDefaultAsync(d => d.Id == cloudBookList.CreatorUserId);
+                    dto.UserName = user.Result.UserName;  // 视频中是user.UserName
+                }
+                // 当前书单下是否有书籍内容
+                if (cloudBookList.BookListAndBooks==null)
+                {
+                    return dto;
+                }
+                dto.Books=new List<BookIncludeTagDto>();
+                foreach (var bookListAndBook in cloudBookList.BookListAndBooks)
+                {
+                    // 获取书籍dto
+                    var bookdto = bookListAndBook.Book.MapTo<BookIncludeTagDto>();
+                    dto.Books.Add(bookdto);
+                    if (bookListAndBook.Book.BookAndBookTags==null)
+                    {
+                        continue;
+                    }
+                    // 书籍标签的处理
+                    bookdto.BookTags=new List<string>();
+                    foreach (var bookAndbookTag in bookListAndBook.Book.BookAndBookTags)
+                    {
+                        bookdto.BookTags.Add(bookAndbookTag.BookTag.TagName);
+                    }
+                }
+
+                return dto;
+            }
+
+
         }
 
 

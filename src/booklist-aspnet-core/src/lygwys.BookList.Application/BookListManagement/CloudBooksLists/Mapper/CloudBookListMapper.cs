@@ -19,6 +19,8 @@ namespace lygwys.BookList.BookListManagement.CloudBooksLists.Mapper
             configuration.CreateMap <CloudBookListEditDto,CloudBookList>();
             configuration.CreateMap <CloudBookList,CloudBookListEditDto>();
 
+            configuration.CreateMap<CloudBookList, CloudBookListShareDto>().ForMember(o=>o.UserName,opt=>opt.Ignore())
+                .ForMember(o=>o.Books,opt=>opt.Ignore());
         }
 	}
 }
