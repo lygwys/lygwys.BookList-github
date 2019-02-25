@@ -523,6 +523,63 @@ export class BookServiceProxy {
         }
         return _observableOf<void>(<any>null);
     }
+
+    /**
+     * @param cloudbookListId (optional) 
+     * @param tenantId (optional) 
+     * @return Success
+     */
+    getBookListShareAsync(cloudbookListId: number | null | undefined, tenantId: number | null | undefined): Observable<CloudBookListShareDto> {
+        let url_ = this.baseUrl + "/api/services/app/Book/GetBookListShareAsync?";
+        if (cloudbookListId !== undefined)
+            url_ += "cloudbookListId=" + encodeURIComponent("" + cloudbookListId) + "&"; 
+        if (tenantId !== undefined)
+            url_ += "tenantId=" + encodeURIComponent("" + tenantId) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetBookListShareAsync(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetBookListShareAsync(<any>response_);
+                } catch (e) {
+                    return <Observable<CloudBookListShareDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CloudBookListShareDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetBookListShareAsync(response: HttpResponseBase): Observable<CloudBookListShareDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? CloudBookListShareDto.fromJS(resultData200) : new CloudBookListShareDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CloudBookListShareDto>(<any>null);
+    }
 }
 
 @Injectable()
@@ -3445,6 +3502,144 @@ export class CreateOrUpdateBookInput implements ICreateOrUpdateBookInput {
 export interface ICreateOrUpdateBookInput {
     book: BookEditDto;
     tagIds: number[] | undefined;
+}
+
+export class CloudBookListShareDto implements ICloudBookListShareDto {
+    name: string | undefined;
+    intro: string | undefined;
+    creationTime: moment.Moment | undefined;
+    books: BookIncludeTagDto[] | undefined;
+    userName: string | undefined;
+
+    constructor(data?: ICloudBookListShareDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.intro = data["intro"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            if (data["books"] && data["books"].constructor === Array) {
+                this.books = [];
+                for (let item of data["books"])
+                    this.books.push(BookIncludeTagDto.fromJS(item));
+            }
+            this.userName = data["userName"];
+        }
+    }
+
+    static fromJS(data: any): CloudBookListShareDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CloudBookListShareDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["intro"] = this.intro;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        if (this.books && this.books.constructor === Array) {
+            data["books"] = [];
+            for (let item of this.books)
+                data["books"].push(item.toJSON());
+        }
+        data["userName"] = this.userName;
+        return data; 
+    }
+
+    clone(): CloudBookListShareDto {
+        const json = this.toJSON();
+        let result = new CloudBookListShareDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICloudBookListShareDto {
+    name: string | undefined;
+    intro: string | undefined;
+    creationTime: moment.Moment | undefined;
+    books: BookIncludeTagDto[] | undefined;
+    userName: string | undefined;
+}
+
+export class BookIncludeTagDto implements IBookIncludeTagDto {
+    name: string | undefined;
+    author: string | undefined;
+    intro: string | undefined;
+    priceUrl: string | undefined;
+    imgStrUrl: string | undefined;
+    bookTags: string[] | undefined;
+
+    constructor(data?: IBookIncludeTagDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.author = data["author"];
+            this.intro = data["intro"];
+            this.priceUrl = data["priceUrl"];
+            this.imgStrUrl = data["imgStrUrl"];
+            if (data["bookTags"] && data["bookTags"].constructor === Array) {
+                this.bookTags = [];
+                for (let item of data["bookTags"])
+                    this.bookTags.push(item);
+            }
+        }
+    }
+
+    static fromJS(data: any): BookIncludeTagDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new BookIncludeTagDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["author"] = this.author;
+        data["intro"] = this.intro;
+        data["priceUrl"] = this.priceUrl;
+        data["imgStrUrl"] = this.imgStrUrl;
+        if (this.bookTags && this.bookTags.constructor === Array) {
+            data["bookTags"] = [];
+            for (let item of this.bookTags)
+                data["bookTags"].push(item);
+        }
+        return data; 
+    }
+
+    clone(): BookIncludeTagDto {
+        const json = this.toJSON();
+        let result = new BookIncludeTagDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IBookIncludeTagDto {
+    name: string | undefined;
+    author: string | undefined;
+    intro: string | undefined;
+    priceUrl: string | undefined;
+    imgStrUrl: string | undefined;
+    bookTags: string[] | undefined;
 }
 
 export class PagedResultDtoOfBookTagListDto implements IPagedResultDtoOfBookTagListDto {
